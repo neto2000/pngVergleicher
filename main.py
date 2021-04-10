@@ -20,22 +20,26 @@ root.minsize(minScreenSizeX, minScreenSizeY)
 
 #convert a png file to an array
 def Convert_PNG_file(file_location):
-    start_image = Image.open(file_location)
+    start_image = Image.open(file_location, "r")
 
     start_image_width = start_image.size[0]
     start_image_height = start_image.size[1]
 
-    pixel_list = [[]] * start_image_width
+    pixel_list = [[[]] * start_image_width] * start_image_height
 
-    for x in range(0, start_image_width):
-        for y in range(0, start_image_height):
+    print(pixel_list)
 
-            pixel_list[start_image_width, start_image_height] = start_image.getpixel(x,y )
+    for y in range(0, start_image_height):
+        for x in range(0, start_image_width):
+
+            really = x ,y
+
+            pixel_list[y][x] = start_image.getpixel((x, y))
 
 
     return pixel_list
 
-test_array = Convert_PNG_file("test.png")
+test_array = Convert_PNG_file("D:/Dateien/GitHub/pngVergleicher/test.png")
 
 print(test_array)
 
