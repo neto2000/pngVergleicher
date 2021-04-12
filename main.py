@@ -25,7 +25,7 @@ def Convert_PNG_file(file_location):
     start_image_width = start_image.size[0]
     start_image_height = start_image.size[1]
 
-    pixel_list = [[[]] * start_image_width] * start_image_height
+    pixel_list = [[0] * start_image_height for i in range(start_image_width)]
 
     print(pixel_list)
 
@@ -35,6 +35,8 @@ def Convert_PNG_file(file_location):
             really = x ,y
 
             pixel_list[y][x] = start_image.getpixel((x, y))
+
+    
 
 
     return pixel_list
