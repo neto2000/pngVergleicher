@@ -46,16 +46,55 @@ def Convert_PNG_file(file_location):
 
 
 #schaut ob das bild im anderem exestiert
-def Compare_Pics_11(pic1, pic2):
-    print("hello!")
+def Compare_Pics_11(picture1, picture2):
+
+    #get the pixels
+    pic1_pixels = Convert_PNG_file(picture1)
+    pic2_pixels = Convert_PNG_file(picture2)
 
 
-pic1_pixels = Convert_PNG_file(picture1)
 
-pic2_pixels = Convert_PNG_file(picture2)
+    all_pixels = len(pic1_pixels) * len(pic1_pixels[0])
 
-print(pic1_pixels)
-print(pic2_pixels)
+    counter_x_pic1 = 0
+    counter_y_pic1 = 0
+
+    counter_x_pic2 = 0
+    counter_y_pic2 = 0
+
+    
+
+
+    print(len(pic1_pixels[0]))
+
+
+    #not yet debuged!
+    for i in range(0, all_pixels):
+        
+        if pic1_pixels[counter_y_pic1][counter_x_pic1] == pic2_pixels[counter_y_pic2][counter_x_pic2]:
+
+            counter_x_pic2 += 1
+
+
+
+         
+        if counter_x_pic1 == len(pic1_pixels[0])-1:
+            counter_y_pic1 += 1
+
+        if counter_x_pic2 == len(pic2_pixels[0]-1):
+            counter_y_pic2 += 1
+
+
+        if counter_y_pic2 == len(pic2_pixels):
+            print("100% gleich")
+
+        counter_x_pic1 += 1
+
+
+Compare_Pics_11(picture1, picture2)
+
+#print(pic1_pixels)
+#print(pic2_pixels)
 
 
 root.mainloop()
