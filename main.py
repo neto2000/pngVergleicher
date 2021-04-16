@@ -54,7 +54,9 @@ def Compare_Pics_11(picture1, picture2):
 
 
 
-    all_pixels = len(pic1_pixels) * len(pic1_pixels[0])
+    all_pixels_pic1 = len(pic1_pixels) * len(pic1_pixels[0])
+    all_pixels_pic2 = len(pic2_pixels) * len(pic2_pixels[0])
+
 
     counter_x_pic1 = 0
     counter_y_pic1 = 0
@@ -65,28 +67,87 @@ def Compare_Pics_11(picture1, picture2):
     
 
 
-    print(len(pic1_pixels[0]))
+    print(all_pixels_pic1)
 
 
     #not yet debuged!
-    for i in range(0, all_pixels):
+    for i in range(0, all_pixels_pic1):
         
-        if pic1_pixels[counter_y_pic1][counter_x_pic1] == pic2_pixels[counter_y_pic2][counter_x_pic2]:
+        #print(counter_y_pic1, counter_x_pic1, counter_y_pic2, counter_x_pic2)
 
-            counter_x_pic2 += 1
 
+
+        if pic1_pixels[counter_y_pic1][counter_x_pic1] == pic2_pixels[0][0]:
+            
+            nd_counter_x_pic1 = counter_x_pic1
+            nd_counter_y_pic1 = counter_y_pic1
+
+            for j in range(0, all_pixels_pic2):
+
+                
+                counter_x_pic2 = 0
+                counter_y_pic2 = 0
+
+                
+
+
+                if pic1_pixels[nd_counter_y_pic1][nd_counter_x_pic1] == pic2_pixels[counter_y_pic2][counter_x_pic2]:
+                    
+                    counter_x_pic2 += 1
+
+                    nd_counter_x_pic1 += 1
+
+                    if counter_x_pic2 == len(pic2_pixels[0]):
+                        counter_y_pic2 += 1
+
+                        nd_counter_x_pic1 = nd_counter_x_pic1 - len(pic2_pixels[0])
+                        nd_counter_y_pic1 += 1
+
+                        if nd_counter_y_pic1 == len(pic1_pixels):
+                            break
+                    
+                    
+
+
+
+                    if nd_counter_x_pic1 == len(pic1_pixels[0]):
+                        break
+
+                    if counter_y_pic2 == len(pic2_pixels):
+                        print("gleich 100")
+
+                        counter_x_pic2 = 0
+                        counter_y_pic2 = 0
+
+                        nd_counter_x_pic1 = 0
+                        nd_counter_y_pic1 = 0
+
+        
 
 
          
-        if counter_x_pic1 == len(pic1_pixels[0])-1:
+        if counter_x_pic1 == len(pic1_pixels[0]) - 1:
             counter_y_pic1 += 1
 
-        if counter_x_pic2 == len(pic2_pixels[0]-1):
+            counter_x_pic1 = -1
+
+        """if counter_x_pic2 == len(pic2_pixels[0]):
             counter_y_pic2 += 1
 
+            counter_x_pic2 = 0
 
-        if counter_y_pic2 == len(pic2_pixels):
+            counter_x_pic1 = counter_x_pic1 - len(pic2_pixels[0])
+            counter_y_pic1 += 1"""
+
+
+        """if counter_y_pic2 == len(pic2_pixels):
             print("100% gleich")
+
+            counter_x_pic2 = 0
+            counter_y_pic2 = 0"""
+
+
+            
 
         counter_x_pic1 += 1
 
