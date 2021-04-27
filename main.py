@@ -75,16 +75,20 @@ def Compare_Pics_11(picture1, picture2):
         
         #print(counter_y_pic1, counter_x_pic1, counter_y_pic2, counter_x_pic2)
 
-
+        print("for schleife")
 
         if pic1_pixels[counter_y_pic1][counter_x_pic1] == pic2_pixels[0][0]:
             
             nd_counter_x_pic1 = counter_x_pic1
             nd_counter_y_pic1 = counter_y_pic1
 
+            print("erste übereinstimmung")
+
             for j in range(0, all_pixels_pic2):
 
                 
+                print("for in dem 2. Bild")
+
                 counter_x_pic2 = 0
                 counter_y_pic2 = 0
 
@@ -97,13 +101,19 @@ def Compare_Pics_11(picture1, picture2):
 
                     nd_counter_x_pic1 += 1
 
-                    if counter_x_pic2 == len(pic2_pixels[0]):
+                    print("abfrage ob die anderen pixel richtig sind")
+
+                    if counter_x_pic2 == len(pic2_pixels[0]) - 1:
                         counter_y_pic2 += 1
+
+                        print("zeilen umbruch")
 
                         nd_counter_x_pic1 = nd_counter_x_pic1 - len(pic2_pixels[0])
                         nd_counter_y_pic1 += 1
 
                         if nd_counter_y_pic1 == len(pic1_pixels):
+                            print("abfrage ob das 1. bild zu klein ist")
+
                             break
                     
                     
@@ -111,6 +121,7 @@ def Compare_Pics_11(picture1, picture2):
 
 
                     if nd_counter_x_pic1 == len(pic1_pixels[0]):
+                        print("abfrage ob das 1. bild zu klein ist X")
                         break
 
                     if counter_y_pic2 == len(pic2_pixels):
