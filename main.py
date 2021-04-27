@@ -20,7 +20,7 @@ root.minsize(minScreenSizeX, minScreenSizeY)
 #the two pictures
 picture1 = "D:/Dateien/GitHub/pngVergleicher/test1.png"
 
-picture2 = "D:/Dateien/GitHub/pngVergleicher/test2.png"
+picture2 = "D:/Dateien/GitHub/pngVergleicher/test3.png"
 
 
 #convert a png file to an array
