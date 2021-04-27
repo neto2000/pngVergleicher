@@ -84,14 +84,16 @@ def Compare_Pics_11(picture1, picture2):
 
             print("erste übereinstimmung")
 
+            counter_x_pic2 = 0
+            counter_y_pic2 = 0
+
+
             for j in range(0, all_pixels_pic2):
 
                 
                 print("for in dem 2. Bild")
 
-                counter_x_pic2 = 0
-                counter_y_pic2 = 0
-
+               
                 
 
 
@@ -102,36 +104,46 @@ def Compare_Pics_11(picture1, picture2):
                     nd_counter_x_pic1 += 1
 
                     print("abfrage ob die anderen pixel richtig sind")
+                    print(counter_x_pic2)
 
-                    if counter_x_pic2 == len(pic2_pixels[0]) - 1:
+                    if counter_x_pic2 == len(pic2_pixels[0]):
                         counter_y_pic2 += 1
+                        counter_x_pic2 = 0
 
                         print("zeilen umbruch")
 
                         nd_counter_x_pic1 = nd_counter_x_pic1 - len(pic2_pixels[0])
                         nd_counter_y_pic1 += 1
 
-                        if nd_counter_y_pic1 == len(pic1_pixels):
-                            print("abfrage ob das 1. bild zu klein ist")
+                        
+                        #if nd_counter_y_pic1 == len(pic1_pixels):
+                            #print("abfrage ob das 1. bild zu klein ist")
 
-                            break
+                            #break
+                        
                     
                     
-
-
-
-                    if nd_counter_x_pic1 == len(pic1_pixels[0]):
-                        print("abfrage ob das 1. bild zu klein ist X")
-                        break
-
                     if counter_y_pic2 == len(pic2_pixels):
-                        print("gleich 100")
+                        print("GLEICH 100")
 
                         counter_x_pic2 = 0
                         counter_y_pic2 = 0
 
                         nd_counter_x_pic1 = 0
                         nd_counter_y_pic1 = 0
+                        
+
+                    if nd_counter_y_pic1 == len(pic1_pixels):
+                        print("abfrage ob das 1. bild zu klein ist")
+
+                        break
+
+
+                    if nd_counter_x_pic1 == len(pic1_pixels[0]):
+                        print("abfrage ob das 1. bild zu klein ist X")
+                        break
+
+                    
 
         
 
