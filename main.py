@@ -35,8 +35,8 @@ def Convert_PNG_file(file_location):
     pixel_list = [[0] * start_image_height for i in range(start_image_width)]
 
     #write the list with the colors of the pixels
-    for y in range(0, start_image_height):
-        for x in range(0, start_image_width):
+    for y in range(0, start_image_height - 1):
+        for x in range(0, start_image_width - 1):
 
             really = x ,y
 
