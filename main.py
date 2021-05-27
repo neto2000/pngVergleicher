@@ -28,15 +28,22 @@ def Convert_PNG_file(file_location):
     start_image = Image.open(file_location, "r")
 
     #get the size of the picture
+    print(start_image.size[0])
+    print(start_image.size[1])
+
+    
+
+
     start_image_width = start_image.size[0]
     start_image_height = start_image.size[1]
 
     #set the list for the pixel colors
-    pixel_list = [[0] * start_image_height for i in range(start_image_width)]
+    pixel_list = [[0] * start_image_width for i in range(start_image_height)]
+
 
     #write the list with the colors of the pixels
-    for y in range(0, start_image_height - 1):
-        for x in range(0, start_image_width - 1):
+    for y in range(0, start_image_height):
+        for x in range(0, start_image_width):
 
             really = x ,y
 
@@ -69,6 +76,8 @@ def Compare_Pics_11(picture1, picture2):
 
     print(all_pixels_pic1)
 
+    print(pic2_pixels)
+    print(pic1_pixels)
 
     #not yet debuged!
     for i in range(0, all_pixels_pic1):
@@ -121,7 +130,7 @@ def Compare_Pics_11(picture1, picture2):
 
                             #break
                         
-                    
+                   
                     
                     if counter_y_pic2 == len(pic2_pixels):
                         print("GLEICH 100")
