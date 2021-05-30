@@ -20,8 +20,10 @@ root.minsize(minScreenSizeX, minScreenSizeY)
 #the two pictures
 picture1 = "D:/Dateien/GitHub/pngVergleicher/test1.png"
 
-picture2 = "D:/Dateien/GitHub/pngVergleicher/test3.png"
+picture2 = "D:/Dateien/GitHub/pngVergleicher/test4.png"
 
+#counts how often pic2 appears in pic1
+counter_of_true_figures = 0
 
 #convert a png file to an array
 def Convert_PNG_file(file_location):
@@ -54,6 +56,8 @@ def Convert_PNG_file(file_location):
 
 #schaut ob das bild im anderem exestiert
 def Compare_Pics_11(picture1, picture2):
+
+    global counter_of_true_figures
 
     #get the pixels
     pic1_pixels = Convert_PNG_file(picture1)
@@ -135,6 +139,8 @@ def Compare_Pics_11(picture1, picture2):
                     if counter_y_pic2 == len(pic2_pixels):
                         print("GLEICH 100")
 
+                        counter_of_true_figures += 1
+
                         counter_x_pic2 = 0
                         counter_y_pic2 = 0
 
@@ -188,6 +194,8 @@ Compare_Pics_11(picture1, picture2)
 
 #print(pic1_pixels)
 #print(pic2_pixels)
+
+print(counter_of_true_figures)
 
 
 root.mainloop()
