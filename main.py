@@ -17,6 +17,11 @@ minScreenSizeX = int(screensizeX/2)
 #set minimal screensize
 root.minsize(minScreenSizeX, minScreenSizeY)
 
+input1 = tk.Entry(root)
+input2 = tk.Entry(root)
+
+
+
 #the two pictures
 picture1 = "D:/Dateien/GitHub/pngVergleicher/test1.png"
 
@@ -189,11 +194,21 @@ def Compare_Pics_11(picture1, picture2):
 
         counter_x_pic1 += 1
 
+    true_count = tk.Label(root, text = counter_of_true_figures)
 
-Compare_Pics_11(picture1, picture2)
+b1 = tk.Button(root, text = "pruefen", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
+
+
+
+#Compare_Pics_11(picture1, picture2)
 
 #print(pic1_pixels)
 #print(pic2_pixels)
+
+input1.pack()
+input2.pack()
+b1.pack()
+
 
 print(counter_of_true_figures)
 
