@@ -196,9 +196,13 @@ def Compare_Pics_11(picture1, picture2):
 
     true_count = tk.Label(root, text = counter_of_true_figures)
 
+    counter_of_true_figures = 0
+
+    true_count.pack()
+
 b1 = tk.Button(root, text = "pruefen", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
-
+#true_count = tk.Label(root, text = counter_of_true_figures)
 
 #Compare_Pics_11(picture1, picture2)
 
@@ -208,6 +212,7 @@ b1 = tk.Button(root, text = "pruefen", command = lambda: Compare_Pics_11(input1.
 input1.pack()
 input2.pack()
 b1.pack()
+#true_count.pack()
 
 
 print(counter_of_true_figures)
