@@ -2,7 +2,6 @@ import tkinter as tk
 from PIL import Image
 
 
-
 root = tk.Tk()
 
 #get screensize
@@ -216,6 +215,8 @@ b1.pack()
 
 
 print(counter_of_true_figures)
+
+print("i know git kappa")
 
 
 root.mainloop()
