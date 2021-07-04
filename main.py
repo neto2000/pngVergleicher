@@ -2,6 +2,8 @@ import tkinter as tk
 from PIL import Image
 
 
+#UI Farbe: c3c3c3ff
+
 root = tk.Tk()
 
 #get screensize
@@ -21,10 +23,10 @@ root.configure(background="white")
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
 
-input1 = tk.Entry(root, bg="white", highlightbackground="lightgrey")
-input2 = tk.Entry(root, bg="white", highlightbackground="lightgrey")
+input1 = tk.Entry(root, bg="#ffffff", highlightbackground="#e0e0e0")
+input2 = tk.Entry(root, bg="#ffffff", highlightbackground="#e0e0e0")
 
-
+#
 
 #the two pictures
 picture1 = "D:/Dateien/GitHub/pngVergleicher/test1.png"
@@ -203,18 +205,21 @@ def Compare_Pics_11(picture1, picture2):
 
     true_count.pack()
 
-b1 = tk.Button(root, text = "pruefen", fg = "black", bg="white", activebackground="lightgrey", activeforeground="black", highlightbackground="lightgrey", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
+b1 = tk.Button(root, text = "pruefen", fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
+settings_image = tk.PhotoImage(file = "~/Dokumente/pngVergleicher/UI_pictures/settings.png")
 
+settings = tk.Button(root, image = settings_image)
 
 #Compare_Pics_11(picture1, picture2)
 
 #print(pic1_pixels)
 #print(pic2_pixels)
 
-input1.grid(column = 0, row = 0, sticky = tk.W+tk.E)
-input2.grid(column = 1, row = 0, sticky = tk.W+tk.E)
-b1.grid(column = 0, row = 1, columnspan = 2, sticky = tk.W+tk.E)
+
+input1.grid(column = 1, row = 0, sticky = tk.W+tk.E)
+input2.grid(column = 2, row = 0, sticky = tk.W+tk.E)
+b1.grid(column = 1, row = 1, columnspan = 2, sticky = tk.W+tk.E)
 #true_count.pack()
 
 
