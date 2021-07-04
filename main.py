@@ -16,8 +16,13 @@ minScreenSizeX = int(screensizeX/2)
 #set minimal screensize
 root.minsize(minScreenSizeX, minScreenSizeY)
 
-input1 = tk.Entry(root)
-input2 = tk.Entry(root)
+root.configure(background="white")
+
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(1, weight=1)
+
+input1 = tk.Entry(root, bg="white", highlightbackground="lightgrey")
+input2 = tk.Entry(root, bg="white", highlightbackground="lightgrey")
 
 
 
@@ -87,7 +92,6 @@ def Compare_Pics_11(picture1, picture2):
     print(pic2_pixels)
     print(pic1_pixels)
 
-    #not yet debuged!
     for i in range(0, all_pixels_pic1):
         
         #print(counter_y_pic1, counter_x_pic1, counter_y_pic2, counter_x_pic2)
@@ -199,7 +203,7 @@ def Compare_Pics_11(picture1, picture2):
 
     true_count.pack()
 
-b1 = tk.Button(root, text = "pruefen", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
+b1 = tk.Button(root, text = "pruefen", fg = "black", bg="white", activebackground="lightgrey", activeforeground="black", highlightbackground="lightgrey", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
 
 
@@ -208,9 +212,9 @@ b1 = tk.Button(root, text = "pruefen", command = lambda: Compare_Pics_11(input1.
 #print(pic1_pixels)
 #print(pic2_pixels)
 
-input1.pack()
-input2.pack()
-b1.pack()
+input1.grid(column = 0, row = 0, sticky = tk.W+tk.E)
+input2.grid(column = 1, row = 0, sticky = tk.W+tk.E)
+b1.grid(column = 0, row = 1, columnspan = 2, sticky = tk.W+tk.E)
 #true_count.pack()
 
 
