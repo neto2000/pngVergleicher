@@ -20,8 +20,11 @@ root.minsize(minScreenSizeX, minScreenSizeY)
 
 root.configure(background="white")
 
-root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=0)
 root.grid_columnconfigure(1, weight=1)
+root.grid_columnconfigure(2, weight=1)
+
+root.grid_rowconfigure(0, weight=0)
 
 input1 = tk.Entry(root, bg="#ffffff", highlightbackground="#e0e0e0")
 input2 = tk.Entry(root, bg="#ffffff", highlightbackground="#e0e0e0")
@@ -209,7 +212,10 @@ b1 = tk.Button(root, text = "pruefen", fg = "#000000", bg="#ffffff", activebackg
 
 settings_image = tk.PhotoImage(file = "~/Dokumente/pngVergleicher/UI_pictures/settings.png")
 
-settings = tk.Button(root, image = settings_image)
+
+
+
+settings = tk.Button(root, image = settings_image, fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", width = 20, height = 20) 
 
 #Compare_Pics_11(picture1, picture2)
 
@@ -220,12 +226,14 @@ settings = tk.Button(root, image = settings_image)
 input1.grid(column = 1, row = 0, sticky = tk.W+tk.E)
 input2.grid(column = 2, row = 0, sticky = tk.W+tk.E)
 b1.grid(column = 1, row = 1, columnspan = 2, sticky = tk.W+tk.E)
+settings.grid(column = 0, row = 0)
+
 #true_count.pack()
 
 
 print(counter_of_true_figures)
 
-print("i know git kappa")
+
 
 
 root.mainloop()
