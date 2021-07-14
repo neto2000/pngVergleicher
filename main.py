@@ -1,6 +1,8 @@
 import tkinter as tk
 from PIL import Image
 
+#counts how often pic2 appears in pic1
+counter_of_true_figures = 0
 
 #UI Farbe: c3c3c3ff
 
@@ -36,8 +38,7 @@ picture1 = "D:/Dateien/GitHub/pngVergleicher/test1.png"
 
 picture2 = "D:/Dateien/GitHub/pngVergleicher/test4.png"
 
-#counts how often pic2 appears in pic1
-counter_of_true_figures = 0
+
 
 #convert a png file to an array
 def Convert_PNG_file(file_location):
@@ -154,6 +155,8 @@ def Compare_Pics_11(picture1, picture2):
 
                         counter_of_true_figures += 1
 
+                        print(counter_of_true_figures)
+
                         counter_x_pic2 = 0
                         counter_y_pic2 = 0
 
@@ -202,11 +205,15 @@ def Compare_Pics_11(picture1, picture2):
 
         counter_x_pic1 += 1
 
-    true_count = tk.Label(root, text = counter_of_true_figures)
+    # true_count = tk.Label(root, text = counter_of_true_figures)
 
-    counter_of_true_figures = 0
+    # counter_of_true_figures = 0
 
-    true_count.pack()
+    # true_count.pack()
+
+
+
+
 
 b1 = tk.Button(root, text = "pruefen", fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
@@ -222,6 +229,7 @@ settings = tk.Button(root, image = settings_image, fg = "#000000", bg="#ffffff",
 #print(pic1_pixels)
 #print(pic2_pixels)
 
+print("ergeb")
 
 input1.grid(column = 1, row = 0, sticky = tk.W+tk.E)
 input2.grid(column = 2, row = 0, sticky = tk.W+tk.E)
@@ -231,7 +239,7 @@ settings.grid(column = 0, row = 0)
 #true_count.pack()
 
 
-print(counter_of_true_figures)
+
 
 
 
