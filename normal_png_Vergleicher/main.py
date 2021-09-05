@@ -217,7 +217,7 @@ def Compare_Pics_11(picture1, picture2):
 
 b1 = tk.Button(root, text = "pruefen", fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
-settings_image = tk.PhotoImage(file = "~/Dokumente/pngVergleicher/UI_pictures/settings.png")
+settings_image = tk.PhotoImage(file = "~/Documents/Scripts/GitHub/pngVergleicher/UI_pictures/settings.png")
 
 
 
