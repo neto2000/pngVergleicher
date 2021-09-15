@@ -3,5 +3,7 @@
 
 int main()
 {
-    Test();
+    Own_Hashmap hi(40);
+
+    hi.Insert(34, "moin");
 }
