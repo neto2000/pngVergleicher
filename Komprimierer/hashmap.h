@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include<list>
 
 
 
@@ -12,9 +13,9 @@ private:
 
     int size = 1;
 
-    
-
     int *Hash_Array = new int[size];
+
+    // std::list<std::list<int>> test;
     
 
 
@@ -25,6 +26,9 @@ public:
         size = hash_size;
 
         int *Hash_Array = new int[size];
+
+        // test.resize(size);
+
 
         std::cout << size << std::endl;
     }
@@ -47,7 +51,10 @@ public:
         }
         else
         {
-            //hier muss eine neues Array mit den mehrerren Werten hinkommen wegen Hash Kollision
+            //bei jedem value den key mit abspeichern um bei einer Kollision die elemente aus einer liste dem key zu zuordnen.
+
+
+            
         }
 
         
