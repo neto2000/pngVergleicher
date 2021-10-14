@@ -217,12 +217,12 @@ def Compare_Pics_11(picture1, picture2):
 
 b1 = tk.Button(root, text = "pruefen", fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", command = lambda: Compare_Pics_11(input1.get(), input2.get()))
 
-settings_image = tk.PhotoImage(file = "~/Documents/Scripts/GitHub/pngVergleicher/UI_pictures/settings.png")
+#settings_image = tk.PhotoImage(file = "~/Documents/Scripts/GitHub/pngVergleicher/UI_pictures/settings.png")
 
 
 
 
-settings = tk.Button(root, image = settings_image, fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", width = 20, height = 20) 
+#settings = tk.Button(root, image = settings_image, fg = "#000000", bg="#ffffff", activebackground="#e0e0e0", activeforeground="#000000", highlightbackground="#ffffff", width = 20, height = 20) 
 
 #Compare_Pics_11(picture1, picture2)
 
@@ -234,7 +234,7 @@ print("ergeb")
 input1.grid(column = 1, row = 0, sticky = tk.W+tk.E)
 input2.grid(column = 2, row = 0, sticky = tk.W+tk.E)
 b1.grid(column = 1, row = 1, columnspan = 2, sticky = tk.W+tk.E)
-settings.grid(column = 0, row = 0)
+#settings.grid(column = 0, row = 0)
 
 #true_count.pack()
 
