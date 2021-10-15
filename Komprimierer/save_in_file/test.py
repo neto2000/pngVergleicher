@@ -1,10 +1,10 @@
-i = ",moin"
 
-print(type(i))
+liste = [10, 2, 3, 8]
 
+liste[-1] = 42
 
-if type(i) == type("hallo"):
-    print("heureka")
+print(liste)
+
 
 
 

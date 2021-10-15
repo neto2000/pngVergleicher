@@ -36,7 +36,7 @@ def Save(save_item, save_file):
 
         Kaze_file = open(save_file, "w")
 
-        Kaze_file.write("{\n\n}\n")
+        Kaze_file.write("{\n}\n")
 
         Kaze_file.close()
 
@@ -48,9 +48,19 @@ def Save(save_item, save_file):
     Kaze_file.close()
 
 
-    lines[1] = "    hallo: 0, \n"
+
+    saved_var_counter = len(lines) - 2
 
 
+    
+
+    if saved_var_counter > 0:
+
+        lines[-2] = lines[-2][:-2] + "," + lines[-2][-2:] 
+
+    lines[-1] = "    save_var" + str(saved_var_counter) + ": " + str(save_item) + " \n"
+
+    lines.append("} \n")
 
     Kaze_file = open(save_file, "w")
 
@@ -62,7 +72,7 @@ def Save(save_item, save_file):
     Kaze_file.close()
 
 
+lol = [10, 10, 11]
 
-
-Save(True, "test.json")    
+Save(lol, "test.json")    
 
