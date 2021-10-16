@@ -3,7 +3,7 @@ liste = [10, 2, 3, 8]
 
 liste[-1] = 42
 
-print(liste)
+print(type(liste))
 
 
 
