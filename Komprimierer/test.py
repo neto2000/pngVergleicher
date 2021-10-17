@@ -1,5 +1,5 @@
 import py_hashmap as h
-import save_in_file/save_in_format.py as save
+import JSON_converter.save_in_format as save
 
 
 test = h.HashMap(7)
