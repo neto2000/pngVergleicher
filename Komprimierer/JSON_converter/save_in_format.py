@@ -71,13 +71,13 @@ def Save(save_item, save_file):
             if len(save_item) - 1 == i:
 
 
-                lines.append("      " + str(save_item[i]) + " \n")
+                lines.append('''      "''' + str(save_item[i]) + '''" \n''')
 
                 break
 
 
 
-            lines.append("      " + str(save_item[i]) + "," + " \n")
+            lines.append('''      "''' + str(save_item[i]) + '''",''' + " \n")
 
 
         lines.append("    ] \n")
@@ -101,7 +101,7 @@ def Save(save_item, save_file):
 
             lines[-2] = lines[-2][:-2] + "," + lines[-2][-2:] 
 
-        lines[-1] = "    save_var" + str(saved_var_counter) + ": " + str(save_item) + " \n"
+        lines[-1] = '''    "save_var''' + str(saved_var_counter) + '''": "''' + str(save_item) + '''" \n'''
 
         lines.append("} \n")
 
