@@ -42,19 +42,21 @@ class HashMap:
 
         self.hash_value_output = key % self.size
 
-        lenght_output = len(self.hash_list[self.hash_value])
+        lenght_output = len(self.hash_list[self.hash_value_output])
+
+       
 
         if(lenght_output == 1):
 
-            return self.hash_list[self.hash_value][0][0]
+            return self.hash_list[self.hash_value_output][0][0]
 
         else:
 
             for i in range(lenght_output):
 
-                if self.hash_list[self.hash_value][i][1] == key:
+                if self.hash_list[self.hash_value_output][i][1] == key:
 
-                    return self.hash_list[self.hash_value][i][0]
+                    return self.hash_list[self.hash_value_output][i][0]
 
 
 

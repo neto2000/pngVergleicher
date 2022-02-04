@@ -63,7 +63,7 @@ def Save(save_item, save_file):
 
             lines[-2] = lines[-2][:-2] + "," + lines[-2][-2:] 
 
-        lines[-1] = "    save_array" + str(saved_var_counter) + ": " + "[" + " \n"
+        lines[-1] = '''    "save_array''' + str(saved_var_counter) + '''": ''' + "[" + " \n"
 
         for i in range(len(save_item)):
 
@@ -115,7 +115,4 @@ def Save(save_item, save_file):
         Kaze_file.close()
 
 
-lol = [10, 10, 11]
-
-Save(lol, "test.json")    
 
