@@ -71,13 +71,13 @@ def Save(save_item, save_file):
             if len(save_item) - 1 == i:
 
 
-                lines.append('''      "''' + str(save_item[i]) + '''" \n''')
+                lines.append('''      ''' + str(save_item[i]) + ''' \n''')
 
                 break
 
 
 
-            lines.append('''      "''' + str(save_item[i]) + '''",''' + " \n")
+            lines.append('''      ''' + str(save_item[i]) + ''',''' + " \n")
 
 
         lines.append("    ] \n")
