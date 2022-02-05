@@ -32,6 +32,16 @@ def Get(file):
 
     print(lines[1])
 
+    eckige_klammern = 0
+
+    for i in range(len(lines)):
+        if "[" in lines[i]:
+            print("array in line: " + str(i))
+
+            eckige_klammern += 1
+
+
+
 print(Path(__file__).resolve().parent.parent.parent)
 
 Get("Komprimierer/hash.json")
