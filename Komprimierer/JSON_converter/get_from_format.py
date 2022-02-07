@@ -3,6 +3,9 @@ from pathlib import Path
 
 def Get(file):
 
+    variables = []
+
+
     repo_path = Path(__file__).resolve().parent.parent.parent
 
     lib_file = Path(file)
@@ -34,15 +37,41 @@ def Get(file):
 
     eckige_klammern = 0
 
-    for i in range(len(lines)):
-        if "[" in lines[i]:
-            print("array in line: " + str(i))
+    item_counter = 0
 
-            eckige_klammern += 1
+    for i in range(len(lines)):
+        
+        eckige_klammern += lines[i].count("[")
+
+        if eckige_klammern == 0:
+            variables[item_counter].append(lines[i].replace(",", ''))
+        
+        elif eckige_klammern == 1:
+
+            bet_line = lines[i].replace("[",'')
+            bet_line = lines[i].replace("]",'')
+
+            variables[item_counter].append(bet_line.split(","))
+
+        
+
+        eckige_klammern -= lines[i].count("]")
+
+        if eckige_klammern == 1:
+
+            variables.append([])
+        elif eckige_klammern == -1:
+            item_counter +=1
+
+
+
+    print(eckige_klammern)
 
 
 
 print(Path(__file__).resolve().parent.parent.parent)
 
 Get("Komprimierer/hash.json")
+
+
 

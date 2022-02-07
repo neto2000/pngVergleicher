@@ -1,10 +1,15 @@
 
-liste = [10, 2, 3, 8]
 
-liste[-1] = 42
-
-print(type(liste))
+from posixpath import split
 
 
+test = "[[moin, lol, lel]]"
 
+test = test.replace("[", '')
+
+test = test.replace("]", '')
+
+ergeb = test.split(",")
+
+print(ergeb)
 
