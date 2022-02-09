@@ -35,37 +35,55 @@ def Get(file):
 
     print(lines[1])
 
-    eckige_klammern = 0
+    eckige_klammern_auf = 0
+    eckige_klammern_zu = 0
 
     item_counter = 0
 
     for i in range(len(lines)):
         
-        eckige_klammern += lines[i].count("[")
+        eckige_klammern_auf = lines[i].count("[")
 
-        if eckige_klammern == 0:
-            variables[item_counter].append(lines[i].replace(",", ''))
+        eckige_klammern_zu = lines[i].count("]")
+
+        if eckige_klammern_auf - eckige_klammern_zu == 1:
+
+            variables.append([])
+        elif eckige_klammern_auf - eckige_klammern_zu == -1:
+            item_counter +=1
+
+        if eckige_klammern_auf == 0:
+            print(variables)
+
+            if lines[i].count("{") == 0:
+                variables[item_counter].append(lines[i].replace(",", ''))
         
-        elif eckige_klammern == 1:
+        elif eckige_klammern_auf == 1:
 
             bet_line = lines[i].replace("[",'')
             bet_line = lines[i].replace("]",'')
 
-            variables[item_counter].append(bet_line.split(","))
+            # variables[item_counter].append(bet_line.split(","))
+
+            print("test")
+
+        elif eckige_klammern_auf == 2:
+
+            # bet_line2 = variables[i].split(",")
+
+            print("bet_line2")
+
+        print(i)
 
         
 
-        eckige_klammern -= lines[i].count("]")
+        
 
-        if eckige_klammern == 1:
-
-            variables.append([])
-        elif eckige_klammern == -1:
-            item_counter +=1
+        
 
 
 
-    print(eckige_klammern)
+    print(eckige_klammern_auf)
 
 
 
