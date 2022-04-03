@@ -1,4 +1,4 @@
-# pngVergleicher (working title)
+# Small Python Projects (working title)
  Ein Programm welches zwei png Dateien vergleicht (wenn es fertig ist)
 
  ## Idee
