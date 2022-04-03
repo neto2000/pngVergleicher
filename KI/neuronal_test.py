@@ -75,9 +75,11 @@ root = tk.Tk()
 buttons = []
 counter = []
 
-def start_neuronal_network(start_value, neuron_count, layers):
+def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     print(start_value)
+
+    print(expected_number)
 
     neurons = []
 
@@ -97,15 +99,48 @@ def start_neuronal_network(start_value, neuron_count, layers):
 
         input_value = temp_value
 
+
+
+    #calculate cost
+
+    expected_output_list = []
+
+    for i in range(10):
+        expected_output_list.append(0)
+
+        if i == expected_number:
+            expected_output_list[i] = 1
+
     finish_layer = []
+
+    cost = 0
 
     for i in range(10):
         finish_layer.append(Neuron(input_value))
 
-        print(finish_layer[i].output())
+        output = finish_layer[i].output()
 
-        
-        
+        print(output)
+
+        add_cost = (output - expected_output_list[i]) ** 2
+
+        cost = cost + add_cost
+
+
+    print("cost: " + str(cost))
+
+
+
+
+
+
+
+      
+
+    
+
+
+    
     print(neurons[0][0].weight)
     
     
@@ -129,7 +164,7 @@ def change_color(i):
 
         counter[i] = 0
 
-        print("of" + str(i))
+        print("off" + str(i))
 
 
 
@@ -158,7 +193,12 @@ for i in range(64):
     buttons[i].configure(bg="black")
 
 
-start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2))
+expec_number_field = tk.Entry(root)
+
+expec_number_field.pack()
+
+
+start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2, int(expec_number_field.get())))
 
 start_button.pack()
 
