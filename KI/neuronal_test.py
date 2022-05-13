@@ -15,6 +15,12 @@ def sigmoid(i):
 
     return three
 
+def Ableitung():
+
+    print("this is a Ableitung")
+
+
+
 class Neuron:
     def __init__(self, value):
 
@@ -63,7 +69,7 @@ class Neuron:
 
         self.weight = weight
 
-    def change_weight(self, bias):
+    def change_bias(self, bias):
 
         self.bias = bias
 
