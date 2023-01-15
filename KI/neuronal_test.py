@@ -70,13 +70,13 @@ class Neuron:
 
             print("invalid weight")
 
-    def change_weight(self, weight):
+    def change_weight(self, position, value):
 
-        self.weight = weight
+        self.weight[position] = value
 
-    def change_bias(self, bias):
+    def change_bias(self, position, value):
 
-        self.bias = bias
+        self.bias[position] = value
 
 
 
