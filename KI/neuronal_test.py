@@ -80,6 +80,10 @@ class Neuron:
 
 
 
+def backpropagation():
+
+    print("that is backpropagation")
+
 root = tk.Tk()
 
 
