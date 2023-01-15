@@ -7,7 +7,7 @@ def sigmoid(i):
 
     e = 2.718281
 
-    one = e**-i
+    one = 1 / (1+ (e**-i))
 
     two = 1 + one
 
@@ -15,9 +15,14 @@ def sigmoid(i):
 
     return three
 
-def Ableitung():
+def sigmoid_ableitung(i):
 
-    print("this is a Ableitung")
+    one = 1 - sigmoid(i)
+
+    two = sigmoid(i) * one
+
+
+    return two
 
 
 
@@ -93,17 +98,25 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     for i in range(layers):
 
+        temp_value = []
+
         neurons.append([])
 
         for j in range(neuron_count):
 
             neurons[i].append(Neuron(input_value)) 
 
-            temp_value = []
+            
 
             temp_value.append(neurons[i][j].output())
 
+            
+
+        print(temp_value)
+
         input_value = temp_value
+
+        
 
 
 
@@ -154,7 +167,7 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
     
 
 
-
+#draw digit
 
 def change_color(i):
 
@@ -174,11 +187,11 @@ def change_color(i):
 
 
 
-x = -90
+x = -10
 
 y = 10
 
-for i in range(64):
+for i in range(256):
     
     counter.append(0)
     buttons.append(tk.Button(root, command=lambda i=i: change_color(i))) 
@@ -186,15 +199,15 @@ for i in range(64):
     
 
 
-    x += 100
+    x += 20
 
-    if x >= 810:
+    if x >= 330:
 
-        y += 100
+        y += 20
 
         x = 10
 
-    buttons[i].place(x=x, y=y, width=100, height = 100)
+    buttons[i].place(x=x, y=y, width=20, height = 20)
 
     buttons[i].configure(bg="black")
 
