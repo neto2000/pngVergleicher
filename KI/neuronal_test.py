@@ -60,7 +60,7 @@ class Neuron:
 
                 ergebnis = ergebnis + temp_list[i]
 
-            ergebnis = ergebnis - self.bias
+            ergebnis = ergebnis + self.bias
 
             sig_ergebnis = sigmoid(ergebnis)
 
@@ -80,9 +80,44 @@ class Neuron:
 
 
 
-def backpropagation():
+
+
+def backpropagation_of_weigth_OutLayer(output_neuron, weigth_pos, expected_output):
+
+    # Ziel: den Einfluss eines weigths auf die cost FUnktion berechnen (Ableitung von der Cost Function mit dem Parameter w (das weigth))
+    #
+    # Kettenregel (alle zwischen funktionen die zu der ableitung der Cost Function führen auch ableiten und multiplizieren)
+    # C = sum( (a_j - y_j)^2 ), j = 1 to n       # j ist die nummer des jetzigen neurons im output layer, n ist die Anzahl der Neuronen im output Layer, a_j ist der Output des j Neurons im output Layer, y_j ist der gewünschte Ouput des j Neuron    
+    #
+    # w = das weigth von dem man den Einfluss auf die Cost function berechnen will
+
+    # z = w_1 * a_1^(L-1) + w_2 * a_2(L-1) + .... + b_1   # a_1^(L-1) ist der Outputs des Neurons im vorherigen Layer, welches per weigth mit dem aktuellen Neuron im output layer verbunden ist, b_1 ist das bias vom aktuellen Output Neuron
+
+    # a = sig(z)  # ist der output des aktuellen Neurons, dieser wird berechnet indem man z in die sigmoid function reintut 
+
+    # d         d         d          d
+    # -  C   =  -  z  *   -  a   *   -   C
+    # dw        dw        dz         da
+
 
     print("that is backpropagation")
+
+    dz = output_neuron.weight[weigth_pos] * neuron_outputs[-2][weigth_pos]
+
+    da = sigmoid_ableitung(dz)
+
+    dC_a = (da - expected_output)**2
+
+    dC_w = dz * da * dC_a
+
+    print(dC_w)
+
+    return dC_w
+
+
+
+
+    
 
 root = tk.Tk()
 
@@ -90,13 +125,15 @@ root = tk.Tk()
 buttons = []
 counter = []
 
+neurons = []
+neuron_outputs = []
+
 def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     print(start_value)
 
     print(expected_number)
 
-    neurons = []
 
     input_value = start_value
 
@@ -105,6 +142,7 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
         temp_value = []
 
         neurons.append([])
+        neuron_outputs.append([])
 
         for j in range(neuron_count):
 
@@ -113,6 +151,8 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
             
 
             temp_value.append(neurons[i][j].output())
+
+            neuron_outputs[i].append(neurons[i][j].output())
 
             
 
@@ -153,6 +193,7 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
     print("cost: " + str(cost))
 
 
+    backpropagation_of_weigth_OutLayer(neurons[-1][0], 0, 1)
 
 
 
@@ -164,7 +205,7 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
 
     
-    print(neurons[0][0].weight)
+    
     
     
 
