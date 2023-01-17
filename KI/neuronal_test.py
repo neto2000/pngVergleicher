@@ -106,7 +106,7 @@ def backpropagation_of_weigth_OutLayer(output_neuron, weigth_pos, expected_outpu
 
     da = sigmoid_ableitung(dz)
 
-    dC_a = (da - expected_output)**2
+    dC_a = (da - expected_output) * 2
 
     dC_w = dz * da * dC_a
 
