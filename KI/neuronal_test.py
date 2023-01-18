@@ -31,15 +31,19 @@ class Neuron:
 
         self.input = value
 
-        
+        self.activision = 0
 
-        
+        self.backpropagated_activisions = []
+
+        self.backpropagated_weigths = []
 
         self.weight = []
 
         for i in range(len(self.input)):
 
             self.weight.append(rnd.randint(-10 , 10))
+            self.backpropagated_weigths.append(0)
+
 
         self.bias = 0
 
@@ -63,6 +67,8 @@ class Neuron:
             ergebnis = ergebnis + self.bias
 
             sig_ergebnis = sigmoid(ergebnis)
+
+            self.activision = sig_ergebnis
 
             return  sig_ergebnis
 
@@ -102,7 +108,7 @@ def backpropagation_of_weigth_OutLayer(output_neuron, weigth_pos, expected_outpu
 
     print("that is backpropagation")
 
-    dz = output_neuron.weight[weigth_pos] * neuron_outputs[-2][weigth_pos]
+    dz = output_neuron.weigth[weigth_pos]
 
     da = sigmoid_ableitung(dz)
 
@@ -112,7 +118,38 @@ def backpropagation_of_weigth_OutLayer(output_neuron, weigth_pos, expected_outpu
 
     print(dC_w)
 
+    output_neuron.backpropagated_weigths[weigth_pos] = dC_w
+
     return dC_w
+
+
+
+def activision_backpropagation_of_layer(layer):
+
+    
+
+
+    # go through all avtivations of the layer
+    for i in len(neurons[layer]):
+
+        # go through all avtivations of the next layer
+        for j in len(neurons[layer-1]):
+
+            if layer < -1:
+
+                print("backpropagate with the BPed activisions of previous layer")
+
+            elif layer == -1:
+
+                print("backpropagate from output layer to this layer")
+
+
+
+
+
+def backpropagation_of_weigths(layer, weigth_pos, Neuron_pos):
+
+    print("test")
 
 
 
