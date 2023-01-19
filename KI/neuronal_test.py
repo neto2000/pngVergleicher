@@ -26,10 +26,20 @@ def sigmoid_ableitung(i):
 
 
 
+
+OUTPUT_LAYER_COUNT = 10
+
+
+
+
+
+
 class Neuron:
-    def __init__(self, value):
+    def __init__(self, value, IS_OUTPUT_LAYER=None):
 
         self.input = value
+
+        self.IS_OUTPUT_LAYER = IS_OUTPUT_LAYER
 
         self.activision = 0
 
@@ -43,9 +53,66 @@ class Neuron:
 
             self.weight.append(rnd.randint(-10 , 10))
             self.backpropagated_weigths.append(0)
+            self.backpropagated_activisions.append(0)
+
+        
 
 
         self.bias = 0
+
+
+
+
+    # Ziel: den Einfluss eines weigths auf die cost FUnktion berechnen (Ableitung von der Cost Function mit dem Parameter w (das weigth))
+    #
+    # Kettenregel (alle zwischen funktionen die zu der ableitung der Cost Function führen auch ableiten und multiplizieren)
+
+    # C ist die Cost function
+    # C = sum( (a_j - y_j)^2 ), j = 1 to n       # j ist die nummer des jetzigen neurons im output layer, n ist die Anzahl der Neuronen im output Layer, a_j ist der Output des j Neurons im output Layer, y_j ist der gewünschte Ouput des j Neuron    
+    #
+    # w = das weigth von dem man den Einfluss auf die Cost function berechnen will
+
+    # z ist die rohe activision ohne sigmoid
+    # z = w_1 * a_1^(L-1) + w_2 * a_2(L-1) + .... + b_1   # a_1^(L-1) ist der Outputs des Neurons im vorherigen Layer, welches per weigth mit dem aktuellen Neuron im output layer verbunden ist, b_1 ist das bias vom aktuellen Output Neuron
+
+    # a ist die activision
+    # a = sig(z)  # ist der output des aktuellen Neurons, dieser wird berechnet indem man z in die sigmoid function reintut 
+
+    # d         d         d          d
+    # -  C   =  -  z  *   -  a   *   -   C
+    # dw        dw        dz         da
+
+
+    # def backpropagate_weigths(self, output_neuron_pos):
+
+    #     for i in range(self.backpropagated_weigths[output_neuron_pos]):
+
+    #         if self.IS_OUTPUT_LAYER:
+
+    #             dz = self.activision
+
+    #             da = sigmoid_ableitung(dz)
+
+    #             dC_a = (da - expected_output_list[neurons[-1].index(self)]) * 2
+
+    #             dC_w = dz * da * dC_a
+
+    #             print(dC_w)
+
+    #             self.backpropagated_weigths[output_neuron_pos][i] = dC_w
+
+    #         else:
+
+
+
+    # def backpropagate_activisions(self, output_neuron_pos):
+
+    #     print("2")
+
+
+    # def backpropagate_bias(self, output_neuron_pos):
+
+    #     print("bias")
 
     
     def output(self):
@@ -88,68 +155,187 @@ class Neuron:
 
 
 
-def backpropagation_of_weigth_OutLayer(output_neuron, weigth_pos, expected_output):
-
-    # Ziel: den Einfluss eines weigths auf die cost FUnktion berechnen (Ableitung von der Cost Function mit dem Parameter w (das weigth))
-    #
-    # Kettenregel (alle zwischen funktionen die zu der ableitung der Cost Function führen auch ableiten und multiplizieren)
-    # C = sum( (a_j - y_j)^2 ), j = 1 to n       # j ist die nummer des jetzigen neurons im output layer, n ist die Anzahl der Neuronen im output Layer, a_j ist der Output des j Neurons im output Layer, y_j ist der gewünschte Ouput des j Neuron    
-    #
-    # w = das weigth von dem man den Einfluss auf die Cost function berechnen will
-
-    # z = w_1 * a_1^(L-1) + w_2 * a_2(L-1) + .... + b_1   # a_1^(L-1) ist der Outputs des Neurons im vorherigen Layer, welches per weigth mit dem aktuellen Neuron im output layer verbunden ist, b_1 ist das bias vom aktuellen Output Neuron
-
-    # a = sig(z)  # ist der output des aktuellen Neurons, dieser wird berechnet indem man z in die sigmoid function reintut 
-
-    # d         d         d          d
-    # -  C   =  -  z  *   -  a   *   -   C
-    # dw        dw        dz         da
-
-
-    print("that is backpropagation")
-
-    dz = output_neuron.weigth[weigth_pos]
-
-    da = sigmoid_ableitung(dz)
-
-    dC_a = (da - expected_output) * 2
-
-    dC_w = dz * da * dC_a
-
-    print(dC_w)
-
-    output_neuron.backpropagated_weigths[weigth_pos] = dC_w
-
-    return dC_w
 
 
 
-def activision_backpropagation_of_layer(layer):
+
+# def activision_backpropagation_of_layer(layer):
 
     
 
 
-    # go through all avtivations of the layer
-    for i in len(neurons[layer]):
+#     # go through all avtivations of the layer
+#     for i in len(neurons[layer]):
 
-        # go through all avtivations of the next layer
-        for j in len(neurons[layer-1]):
+#         # go through all avtivations of the next layer
+#         for j in len(neurons[layer-1]):
 
-            if layer < -1:
+#             #Output layer ist -1 alle layer danach sind in absteigender Reihenfolge sortiert. Nächster layer -2, danach -3 usw.
+#             if layer < -1:
 
-                print("backpropagate with the BPed activisions of previous layer")
+#                 print("backpropagate with the BPed activisions of previous layer")
 
-            elif layer == -1:
+#                 dz = neurons[layer][i].weigth[j]
 
-                print("backpropagate from output layer to this layer")
+#                 da = sigmoid_ableitung(dz)
+
+#                 dC_aL_1 = dz * da * neurons[layer + 1][i].backpropagated_activisions[j]
+
+
+
+#             elif layer == -1:
+
+#                 print("backpropagate from output layer to this layer")
+
+#                 dz = neurons[layer][i].weigth[j]
+
+#                 da = sigmoid_ableitung(dz)
+
+#                 dC_a = (da - expected_output_list[i]) * 2
+
+#                 dC_aL_1 = dz * da * dC_a
+
+#                 neurons[layer][i].backpropagated_activisions[j] = dC_aL_1
+
+                
+
+                
+def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
+
+    if abs(layer) <= len(neurons):
+
+        output_BPed_weight_list = []
+
+        BPed_weight_next_layers = []
+
+        neuron_BPed_weights = []
+
+        for neuron_pos in range(len(neurons[layer])):
+
+            dz = prev_neuron.weight[neuron_pos]
+
+            da = sigmoid_ableitung(dz)
+
+            BPed_activision = dz * da * prev_BPed_activision
+
+        
+            BPed_weight_only_next_layer = rekursive_backpropagation(layer-1, BPed_activision, neurons[layer][neuron_pos])
+
+            #mittelwert von vorherigen backprops
+
+            for i in BPed_weight_only_next_layer:
+
+                try:
+
+                    onetime = False
+
+                    list_counter = 0
+
+                    mittelwert_list = 0
+
+                    for j in i:
+
+                        if onetime == False:
+
+                            mittelwert_list = j
+                            onetime = True
+
+                        else:
+
+                            for k in range(len(j)):
+                                mittelwert_list[k] += j[k]
+
+                        list_counter += 1
+
+                    for wert_pos in range(len(mittelwert_list)):
+
+                        mittelwert_list[wert_pos] = mittelwert_list[wert_pos] / list_counter
+
+                    BPed_weight_next_layers.append(mittelwert_list)
+
+                except:
+
+                    BPed_weight_next_layers.append(i)
+
+                    continue
 
 
 
 
 
-def backpropagation_of_weigths(layer, weigth_pos, Neuron_pos):
+            # backprop von eigenen weights
+
+            neuron_BPed_weights.append([])
+
+            for weight_pos in range(len(neurons[layer][neuron_pos].weight)):
+
+                dz = neurons[layer - 1][weight_pos].activision
+
+                da = sigmoid_ableitung(dz)
+
+                BPed_weight = dz * da * BPed_activision
+
+                neuron_BPed_weights[weight_pos].append(BPed_weight)
+
+
+        #!!!!  mittelwert von allen listen aus BPed_weight_next_layers in output_BPed_weight_list
+
+
+        output_BPed_weight_list.append(neuron_BPed_weights)
+
+        
+
+    else:
+
+        neuron_BPed_weights = [[]]
+
+        for neuron_pos in range(len(neurons[layer])):
+
+            dz = prev_neuron.weight[neuron_pos]
+
+            da = sigmoid_ableitung(dz)
+
+            BPed_activision = dz * da * prev_BPed_activision
+
+            neuron_BPed_weights[0].append([])
+
+            for input in counter:
+
+                # backprop von eigenen weights
+
+                dz = input
+
+                da = sigmoid_ableitung(dz)
+
+                BPed_weight = dz * da * BPed_activision
+
+                neuron_BPed_weights[0][neuron_pos].append(BPed_weight)
+
+        return neuron_BPed_weights
+
+
+
+        
+
+
+
+
+
+
+
+
+
+def backpropagation_of_weights():
 
     print("test")
+
+    for output_neurons in neurons[-1]:
+
+        
+
+
+
+
 
 
 
@@ -166,6 +352,8 @@ neurons = []
 neuron_outputs = []
 
 def start_neuronal_network(start_value, neuron_count, layers, expected_number):
+
+    global expected_output_list
 
     print(start_value)
 
@@ -205,20 +393,22 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     expected_output_list = []
 
-    for i in range(10):
+    for i in range(OUTPUT_LAYER_COUNT):
         expected_output_list.append(0)
 
         if i == expected_number:
             expected_output_list[i] = 1
 
-    finish_layer = []
 
     cost = 0
 
-    for i in range(10):
-        finish_layer.append(Neuron(input_value))
+    for i in range(OUTPUT_LAYER_COUNT):
 
-        output = finish_layer[i].output()
+        neurons.append([])
+
+        neurons[-1].append(Neuron(input_value, True))
+
+        output = neurons[i].output()
 
         print(output)
 
@@ -230,7 +420,7 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
     print("cost: " + str(cost))
 
 
-    backpropagation_of_weigth_OutLayer(neurons[-1][0], 0, 1)
+    
 
 
 
