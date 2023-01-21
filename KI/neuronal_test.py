@@ -299,7 +299,7 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
             neuron_BPed_weights[0].append([])
 
-            for input in counter:
+            for input in input_layer:
 
                 # backprop von eigenen weights
 
@@ -327,12 +327,12 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
 def backpropagation_of_weights():
 
-    print("test")
+    
 
     for output_neurons in neurons[-1]:
 
         
-
+        print("test")
 
 
 
@@ -342,23 +342,28 @@ def backpropagation_of_weights():
 
     
 
-root = tk.Tk()
+# root = tk.Tk()
 
 
-buttons = []
-counter = []
+# buttons = []
+# counter = []
 
 neurons = []
 neuron_outputs = []
 
+
+
 def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     global expected_output_list
+    global input_layer
 
     print(start_value)
 
     print(expected_number)
 
+
+    input_layer = start_value
 
     input_value = start_value
 
@@ -401,14 +406,15 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
 
     cost = 0
+    neurons.append([])
 
     for i in range(OUTPUT_LAYER_COUNT):
 
-        neurons.append([])
 
         neurons[-1].append(Neuron(input_value, True))
 
-        output = neurons[i].output()
+        
+        output = neurons[-1][i].output()
 
         print(output)
 
@@ -439,62 +445,62 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
     
 
 
-#draw digit
+# #draw digit
 
-def change_color(i):
+# def change_color(i):
 
-    if counter[i] == 0:
-        buttons[i].configure(bg="white") 
+#     if counter[i] == 0:
+#         buttons[i].configure(bg="white") 
 
-        counter[i] = 1
+#         counter[i] = 1
 
-        print("on" + str(i))
+#         print("on" + str(i))
 
-    elif counter[i] == 1:
-        buttons[i].configure(bg="black") 
+#     elif counter[i] == 1:
+#         buttons[i].configure(bg="black") 
 
-        counter[i] = 0
+#         counter[i] = 0
 
-        print("off" + str(i))
+#         print("off" + str(i))
 
 
 
-x = -10
+# x = -10
 
-y = 10
+# y = 10
 
-for i in range(256):
+# for i in range(256):
     
-    counter.append(0)
-    buttons.append(tk.Button(root, command=lambda i=i: change_color(i))) 
+#     counter.append(0)
+#     buttons.append(tk.Button(root, command=lambda i=i: change_color(i))) 
 
     
 
 
-    x += 20
+#     x += 20
 
-    if x >= 330:
+#     if x >= 330:
 
-        y += 20
+#         y += 20
 
-        x = 10
+#         x = 10
 
-    buttons[i].place(x=x, y=y, width=20, height = 20)
+#     buttons[i].place(x=x, y=y, width=20, height = 20)
 
-    buttons[i].configure(bg="black")
-
-
-expec_number_field = tk.Entry(root)
-
-expec_number_field.pack()
+#     buttons[i].configure(bg="black")
 
 
-start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2, int(expec_number_field.get())))
+# expec_number_field = tk.Entry(root)
 
-start_button.pack()
+# expec_number_field.pack()
 
 
+# start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2, int(expec_number_field.get())))
+
+# start_button.pack()
 
 
 
-root.mainloop()
+
+
+# root.mainloop()
