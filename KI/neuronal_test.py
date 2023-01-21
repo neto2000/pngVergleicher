@@ -204,7 +204,7 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
     if abs(layer) <= len(neurons):
 
-        output_BPed_weight_list = []
+        mittelwert_of_BPed_weigths = []
 
         BPed_weight_next_layers = []
 
@@ -219,47 +219,18 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
             BPed_activision = dz * da * prev_BPed_activision
 
         
-            BPed_weight_only_next_layer = rekursive_backpropagation(layer-1, BPed_activision, neurons[layer][neuron_pos])
+            BPed_weight_next_layers = rekursive_backpropagation(layer-1, BPed_activision, neurons[layer][neuron_pos])
 
             #mittelwert von vorherigen backprops
 
-            for i in BPed_weight_only_next_layer:
+            current_layer = 0
 
-                try:
-
-                    onetime = False
-
-                    list_counter = 0
-
-                    mittelwert_list = 0
-
-                    for j in i:
-
-                        if onetime == False:
-
-                            mittelwert_list = j
-                            onetime = True
-
-                        else:
-
-                            for k in range(len(j)):
-                                mittelwert_list[k] += j[k]
-
-                        list_counter += 1
-
-                    for wert_pos in range(len(mittelwert_list)):
-
-                        mittelwert_list[wert_pos] = mittelwert_list[wert_pos] / list_counter
-
-                    BPed_weight_next_layers.append(mittelwert_list)
-
-                except:
-
-                    BPed_weight_next_layers.append(i)
-
-                    continue
+            for BPed_weigths_of_layer in BPed_weight_next_layers:
 
 
+                mittelwert_of_layer = [(x+y) / 2 for x,y in zip(BPed_weigths_of_layer)]
+
+                mittelwert_of_BPed_weigths.append(mittelwert_of_layer)
 
 
 
@@ -281,7 +252,7 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
         #!!!!  mittelwert von allen listen aus BPed_weight_next_layers in output_BPed_weight_list
 
 
-        output_BPed_weight_list.append(neuron_BPed_weights)
+        mittelwert_of_BPed_weigths.append(neuron_BPed_weights)
 
         
 
