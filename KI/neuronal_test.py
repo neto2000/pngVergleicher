@@ -223,7 +223,6 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
             #mittelwert von vorherigen backprops
 
-            current_layer = 0
 
             for BPed_weigths_of_layer in BPed_weight_next_layers:
 
@@ -298,13 +297,16 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
 def backpropagation_of_weights():
 
-    
+    BPed_weigths_of_output_neurons = []
 
+    
     for output_neurons in neurons[-1]:
 
-        
-        print("test")
+        BPed_weigths_of_output_neurons.append(output_neurons)
 
+    backpropagated_weights = [(x+y) / 2 for x,y in zip(BPed_weigths_of_output_neurons)]
+
+    return backpropagated_weights
 
 
 
