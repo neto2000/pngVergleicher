@@ -8,7 +8,23 @@ root = tk.Tk()
 buttons = []
 counter = []
 
+colors = {0:"#000000",0.1:"#1A1A1A",0.2:"#343434",0.3:"#4E4E4E",0.4:"#686868",0.5:"#828282",0.6:"#9C9C9C",0.7:"#B6B6B6",0.8:"#D0D0D0",0.9:"#FFFFFF"}
+
 #draw digit
+
+def change_color_ten(i):
+
+    counter[i] = round(counter[i] + 0.1, 1)
+
+
+    if counter[i] == 1:
+
+        counter[i] = 0
+
+
+    print(counter[i])
+
+    buttons[i].configure(bg=colors[counter[i]])
 
 def change_color(i):
 
@@ -35,7 +51,7 @@ y = 10
 for i in range(256):
     
     counter.append(0)
-    buttons.append(tk.Button(root, command=lambda i=i: change_color(i))) 
+    buttons.append(tk.Button(root, command=lambda i=i: change_color_ten(i))) 
 
     
 
