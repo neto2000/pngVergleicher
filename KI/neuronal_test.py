@@ -299,6 +299,8 @@ def backpropagation_of_weights():
 
     BPed_weigths_of_output_neurons = []
 
+    neuron_BPed_weights = []
+
     current_output_neuron = 0
     
     for output_neuron in neurons[-1]:
@@ -311,9 +313,20 @@ def backpropagation_of_weights():
 
         BPed_weigths_of_output_neurons.append(rekursive_backpropagation(-1, ableitung_of_output, output_neuron))
 
+        neuron_BPed_weights.append([])
+
+        for weight_pos in range(len(neurons[-1][current_output_neuron].weight)):
+
+
+            BPed_weight = ableitung_of_output * neurons[-2][weight_pos].activision
+
+            neuron_BPed_weights[weight_pos].append(BPed_weight)
+
         current_output_neuron += 1
 
     backpropagated_weights = [(x+y) / 2 for x,y in zip(BPed_weigths_of_output_neurons)]
+
+    backpropagated_weights.append(neuron_BPed_weights)
 
     return backpropagated_weights
 
