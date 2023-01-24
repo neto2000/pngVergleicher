@@ -48,7 +48,7 @@ x = -10
 
 y = 10
 
-for i in range(256):
+for i in range(16):
     
     counter.append(0)
     buttons.append(tk.Button(root, command=lambda i=i: change_color_ten(i))) 
@@ -58,7 +58,7 @@ for i in range(256):
 
     x += 20
 
-    if x >= 330:
+    if x >= 90:
 
         y += 20
 
@@ -74,7 +74,7 @@ expec_number_field = tk.Entry(root)
 expec_number_field.pack()
 
 
-start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2, int(expec_number_field.get())))
+start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 2, 2, int(expec_number_field.get())))
 
 start_button.pack()
 
