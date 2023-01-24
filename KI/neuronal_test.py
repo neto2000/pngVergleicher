@@ -202,7 +202,7 @@ class Neuron:
                 
 def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
-    if abs(layer) <= len(neurons):
+    if abs(layer) < len(neurons):
 
         mittelwert_of_BPed_weigths = []
 
@@ -219,17 +219,15 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
             BPed_activision = dz * da * prev_BPed_activision
 
         
-            BPed_weight_next_layers = rekursive_backpropagation(layer-1, BPed_activision, neurons[layer][neuron_pos])
+            BPed_weight_next_layers.append(rekursive_backpropagation(layer-1, BPed_activision, neurons[layer][neuron_pos]))
+
+            print(BPed_weight_next_layers)
+
+            print("----------------------------------------")
 
             #mittelwert von vorherigen backprops
 
 
-            for BPed_weigths_of_layer in BPed_weight_next_layers:
-
-
-                mittelwert_of_layer = [(x+y) / 2 for x,y in zip(BPed_weigths_of_layer)]
-
-                mittelwert_of_BPed_weigths.append(mittelwert_of_layer)
 
 
 
@@ -245,13 +243,68 @@ def rekursive_backpropagation(layer, prev_BPed_activision, prev_neuron):
 
                 BPed_weight = dz * da * BPed_activision
 
-                neuron_BPed_weights[weight_pos].append(BPed_weight)
+                neuron_BPed_weights[neuron_pos].append(BPed_weight)
+
+
+        # for BPed_layer in BPed_weight_next_layers:
+
+        #     # print(BPed_weigths_of_layer)
+
+
+        #     # mittelwert_of_layer = [(x+y) / 2 for x,y in zip(*BPed_weigths_of_layer)]
+
+        #     mittelwert_of_layer = []
+
+        #     zipped_weights = zip(*BPed_weigths_of_layer)
+
+        #     for item in zipped_weights:
+
+        #         # print(sum(item) / len(item))
+
+        #         mittelwert_of_layer.append(sum(item) / len(item))
+
+
+        #     mittelwert_of_BPed_weigths.append(mittelwert_of_layer)
+
+
+        zipped_lists = zip(*BPed_weight_next_layers)
+
+        zipped_layers = []
+
+        for layer in zipped_lists:
+
+            zipped_layers.append(zip(*layer))
+
+
+        for layer in range(len(zipped_layers)):
+
+            mittelwert_of_BPed_weigths.append([])
+
+            neuron_count = 0
+
+            for weights in zipped_layers[layer]:
+
+                mittelwert_of_BPed_weigths[layer].append([])
+
+                zipped_weights = zip(*weights)
+
+                for wight_pair in zipped_weights:
+
+                    mittelwert_of_BPed_weigths[layer][neuron_count].append(sum(wight_pair) / len(zipped_layers))
+
+                neuron_count += 1
 
 
         #!!!!  mittelwert von allen listen aus BPed_weight_next_layers in output_BPed_weight_list
 
 
         mittelwert_of_BPed_weigths.append(neuron_BPed_weights)
+
+        print(mittelwert_of_BPed_weigths)
+
+        print("----------------m------------------------")
+
+        return mittelwert_of_BPed_weigths
 
         
 
@@ -301,6 +354,8 @@ def backpropagation_of_weights():
 
     neuron_BPed_weights = []
 
+    backpropagated_weights = []
+
     current_output_neuron = 0
     
     for output_neuron in neurons[-1]:
@@ -311,20 +366,49 @@ def backpropagation_of_weights():
 
         ableitung_of_output = dz * dC_a
 
-        BPed_weigths_of_output_neurons.append(rekursive_backpropagation(-1, ableitung_of_output, output_neuron))
+        BPed_weigths_of_output_neurons.append(rekursive_backpropagation(-2, ableitung_of_output, output_neuron))
 
         neuron_BPed_weights.append([])
 
         for weight_pos in range(len(neurons[-1][current_output_neuron].weight)):
 
+            print(len(neurons[-1][current_output_neuron].weight))
 
             BPed_weight = ableitung_of_output * neurons[-2][weight_pos].activision
 
-            neuron_BPed_weights[weight_pos].append(BPed_weight)
+            neuron_BPed_weights[current_output_neuron].append(BPed_weight)
 
         current_output_neuron += 1
 
-    backpropagated_weights = [(x+y) / 2 for x,y in zip(BPed_weigths_of_output_neurons)]
+    # backpropagated_weights = [(x+y) / 2 for x,y in zip(*BPed_weigths_of_output_neurons)]
+
+    zipped_lists = zip(*BPed_weigths_of_output_neurons)
+
+    zipped_layers = []
+
+    for layer in zipped_lists:
+
+        zipped_layers.append(zip(*layer))
+
+
+    for layer in range(len(zipped_layers)):
+
+        backpropagated_weights.append([])
+
+        neuron_count = 0
+
+        for weights in zipped_layers[layer]:
+
+            backpropagated_weights[layer].append([])
+
+            zipped_weights = zip(*weights)
+
+            for wight_pair in zipped_weights:
+
+                backpropagated_weights[layer][neuron_count].append(sum(wight_pair) / len(zipped_layers))
+
+            neuron_count += 1
+
 
     backpropagated_weights.append(neuron_BPed_weights)
 
@@ -420,6 +504,9 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     print("cost: " + str(cost))
 
+    print("----------backpropagated-weights----------")
+
+    print(backpropagation_of_weights())
 
     
 
