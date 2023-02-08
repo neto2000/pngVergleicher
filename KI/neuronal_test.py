@@ -31,9 +31,6 @@ OUTPUT_LAYER_COUNT = 10
 
 
 
-
-
-
 class Neuron:
     def __init__(self, value, IS_OUTPUT_LAYER=None):
 
@@ -83,37 +80,7 @@ class Neuron:
     # dw        dw        dz         da
 
 
-    # def backpropagate_weigths(self, output_neuron_pos):
-
-    #     for i in range(self.backpropagated_weigths[output_neuron_pos]):
-
-    #         if self.IS_OUTPUT_LAYER:
-
-    #             dz = self.activision
-
-    #             da = sigmoid_ableitung(dz)
-
-    #             dC_a = (da - expected_output_list[neurons[-1].index(self)]) * 2
-
-    #             dC_w = dz * da * dC_a
-
-    #             print(dC_w)
-
-    #             self.backpropagated_weigths[output_neuron_pos][i] = dC_w
-
-    #         else:
-
-
-
-    # def backpropagate_activisions(self, output_neuron_pos):
-
-    #     print("2")
-
-
-    # def backpropagate_bias(self, output_neuron_pos):
-
-    #     print("bias")
-
+    
     
     def output(self):
 
@@ -151,51 +118,6 @@ class Neuron:
 
         self.bias[position] = value
 
-
-
-
-
-
-
-
-
-# def activision_backpropagation_of_layer(layer):
-
-    
-
-
-#     # go through all avtivations of the layer
-#     for i in len(neurons[layer]):
-
-#         # go through all avtivations of the next layer
-#         for j in len(neurons[layer-1]):
-
-#             #Output layer ist -1 alle layer danach sind in absteigender Reihenfolge sortiert. Nächster layer -2, danach -3 usw.
-#             if layer < -1:
-
-#                 print("backpropagate with the BPed activisions of previous layer")
-
-#                 dz = neurons[layer][i].weigth[j]
-
-#                 da = sigmoid_ableitung(dz)
-
-#                 dC_aL_1 = dz * da * neurons[layer + 1][i].backpropagated_activisions[j]
-
-
-
-#             elif layer == -1:
-
-#                 print("backpropagate from output layer to this layer")
-
-#                 dz = neurons[layer][i].weigth[j]
-
-#                 da = sigmoid_ableitung(dz)
-
-#                 dC_a = (da - expected_output_list[i]) * 2
-
-#                 dC_aL_1 = dz * da * dC_a
-
-#                 neurons[layer][i].backpropagated_activisions[j] = dC_aL_1
 
                 
 
@@ -489,79 +411,3 @@ def start_neuronal_network(start_value, neuron_count, layers, expected_number):
 
     
 
-
-
-
-
-      
-
-    
-
-
-    
-    
-    
-    
-
-    
-
-
-# #draw digit
-
-# def change_color(i):
-
-#     if counter[i] == 0:
-#         buttons[i].configure(bg="white") 
-
-#         counter[i] = 1
-
-#         print("on" + str(i))
-
-#     elif counter[i] == 1:
-#         buttons[i].configure(bg="black") 
-
-#         counter[i] = 0
-
-#         print("off" + str(i))
-
-
-
-# x = -10
-
-# y = 10
-
-# for i in range(256):
-    
-#     counter.append(0)
-#     buttons.append(tk.Button(root, command=lambda i=i: change_color(i))) 
-
-    
-
-
-#     x += 20
-
-#     if x >= 330:
-
-#         y += 20
-
-#         x = 10
-
-#     buttons[i].place(x=x, y=y, width=20, height = 20)
-
-#     buttons[i].configure(bg="black")
-
-
-# expec_number_field = tk.Entry(root)
-
-# expec_number_field.pack()
-
-
-# start_button = tk.Button(root, text="Start", command=lambda: start_neuronal_network(counter, 8, 2, int(expec_number_field.get())))
-
-# start_button.pack()
-
-
-
-
-
-# root.mainloop()
